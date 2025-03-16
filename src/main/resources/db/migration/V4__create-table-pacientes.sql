@@ -9,10 +9,10 @@ create table pacientes(
     cep varchar(9) not null,
     complemento varchar(100),
     numero varchar(20),
-    uf char(2) not null,
+    uf varchar(2) not null,
     cidade varchar(100) not null,
     telefone varchar(20) not null,
-    ativo tinyint not null,
+    ativo BOOLEAN not null,
 
     primary key(id)
 
