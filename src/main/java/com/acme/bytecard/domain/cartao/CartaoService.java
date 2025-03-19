@@ -63,6 +63,7 @@ public class CartaoService {
         return cvv.toString();
     }
 
+    @Transactional
     public Cartao alterarStatus(String numeroCartao, StatusCartao statusCartao) {
         var cartaoAtual = cartaoRepository.findByNumero(numeroCartao)
                 .orElseThrow(() -> new IllegalArgumentException("Cartão não encontrado"));
