@@ -62,4 +62,13 @@ public class CartaoService {
     public Page<Cartao> listar(Pageable paginacao) {
         return cartaoRepository.findAll(paginacao);
     }
+
+    public Cartao alterarStatus(String numeroCartao, StatusCartao novoStatus) {
+        Cartao cartao = cartaoRepository.findByNumero(numeroCartao)
+                .orElseThrow(() -> new IllegalArgumentException("Cartão não encontrado"));
+
+        cartao.setStatus(novoStatus);
+        cartaoRepository.save(cartao);
+        return cartao;
+    }
 }
