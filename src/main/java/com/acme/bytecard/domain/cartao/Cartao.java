@@ -1,9 +1,14 @@
 package com.acme.bytecard.domain.cartao;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@Entity(name = "cartoes")
+@Getter
+@Setter
 public class Cartao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
