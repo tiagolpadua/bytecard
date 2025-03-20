@@ -7,6 +7,7 @@ import com.acme.bytecard.domain.cartao.StatusCartao;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -62,5 +63,13 @@ public class CartaoService {
             cvv.append(random.nextInt(10));
         }
         return cvv.toString();
+    }
+
+    @Transactional
+    public Cartao alterarStatus(String numeroCartao, StatusCartao statusCartao) {
+        var cartaoAtual = cartaoRepository.findByNumero(numeroCartao)
+                .orElseThrow(() -> new IllegalArgumentException("Cartão não encontrado"));
+        cartaoAtual.setStatus(statusCartao);
+        return cartaoRepository.save(cartaoAtual);
     }
 }

@@ -1,5 +1,6 @@
 package com.acme.bytecard.controller;
 
+import com.acme.bytecard.domain.cartao.DadosAlteracaoStatusCartao;
 import com.acme.bytecard.domain.cartao.DadosCadastroCartao;
 import com.acme.bytecard.domain.cartao.DadosListagemCartao;
 import com.acme.bytecard.domain.paciente.*;
@@ -33,5 +34,11 @@ public class CartaoController {
     public ResponseEntity<DadosListagemCartao> cadastrar(@RequestBody @Valid DadosCadastroCartao dadosCadastroCartao) {
         var novoCartao = cartaoService.cadastrar(dadosCadastroCartao.cliente(), dadosCadastroCartao.limite());
         return ResponseEntity.ok(new DadosListagemCartao(novoCartao));
+    }
+
+    @PatchMapping
+    public ResponseEntity<DadosListagemCartao> alterarStatus(@RequestBody @Valid DadosAlteracaoStatusCartao dadosAlteracaoStatusCartao) {
+        var cartaoAtualizado = cartaoService.alterarStatus(dadosAlteracaoStatusCartao.numeroCartao(), dadosAlteracaoStatusCartao.novoStatus());
+        return ResponseEntity.ok(new DadosListagemCartao(cartaoAtualizado));
     }
 }
