@@ -18,7 +18,7 @@ public class CompraController {
     private final CompraService compraService;
 
     @PostMapping
-    public ResponseEntity<Object> cadastrarCompra(@Valid @RequestBody DadosCadastroCompra dadosCadastroCompra) {
+    public ResponseEntity<DadosListagemCompra> cadastrarCompra(@Valid @RequestBody DadosCadastroCompra dadosCadastroCompra) {
         var compra = compraService.cadastrarCompra(
                 dadosCadastroCompra.numeroCartao(),
                 dadosCadastroCompra.valor(),
