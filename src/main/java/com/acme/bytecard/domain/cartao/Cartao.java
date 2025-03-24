@@ -1,10 +1,12 @@
 package com.acme.bytecard.domain.cartao;
 
+import com.acme.bytecard.domain.compra.Compra;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity(name = "cartoes")
 @Getter
@@ -32,4 +34,7 @@ public class Cartao {
     @Column(length = 9, nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusCartao status;
+
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Compra> compras;
 }
