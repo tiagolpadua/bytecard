@@ -1,0 +1,21 @@
+package com.acme.bytecard.domain.compra;
+
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+import java.math.BigDecimal;
+
+public record DadosCadastroCompra(
+    @NotBlank
+    String numeroCartao,
+
+    @DecimalMin(value = "0.0", inclusive = false)
+    BigDecimal valor,
+
+    @NotNull
+    CategoriaCompra categoria,
+
+    @NotBlank
+    String estabelecimento) {
+}
